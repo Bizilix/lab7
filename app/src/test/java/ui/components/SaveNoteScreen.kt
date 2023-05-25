@@ -78,5 +78,28 @@ fun SaveNoteScreen(viewModel: MainViewModel){
     )
 }
 
+@Composable
+private fun ColorPicker(
+    colors: List<ColorModel>,
+    onColorSelect: (ColorModel)->Unit)
+{
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Text(text = "Color picker",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(8.dp)
+        )
+        LazyColumn(modifier = Modifier.fillMaxWidth()){
+            items(
+                colors.size
+            ){
+                    itemIndex ->
+                val color = colors[itemIndex]
+                ColorItem(color = color, onColorSelect = onColorSelect )
+            }
+        }
+    }
+}
+
 
 
