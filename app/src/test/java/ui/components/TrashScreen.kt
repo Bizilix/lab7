@@ -144,3 +144,50 @@ areActionsVisible Boolean
         }
     )
 }
+@Composable
+@ExperimentalMaterialApi
+private fun Content(
+    notes ListNoteModel,
+    onNoteClick (NoteModel) - Unit,
+selectedNotes ListNoteModel,
+) {
+    val tabs = listOf(REGULAR, CHECKABLE)
+
+    Init state for selected tab
+    var selectedTab by remember { mutableStateOf(0) }
+
+    Column {
+        TabRow(selectedTabIndex = selectedTab) {
+            tabs.forEachIndexed { index, title -
+                Tab(
+                    text = { Text(title) },
+                    selected = selectedTab == index,
+                    onClick = { selectedTab = index }
+                )
+            }
+        }
+
+        val filteredNotes = when (selectedTab) {
+            0 - {
+                notes.filter { it.isCheckedOff == null }
+            }
+                1 - {
+                notes.filter { it.isCheckedOff != null }
+            }
+            else - throw IllegalStateException(Tab not supported - index $selectedTab)
+        }
+
+        LazyColumn {
+            items(count = filteredNotes.size) { noteIndex -
+                val note = filteredNotes[noteIndex]
+                val isNoteSelected = selectedNotes.contains(note)
+                Note(
+                    note = note,
+                    onNoteClick = onNoteClick,
+                    isSelected = isNoteSelected
+                )
+            }
+        }
+    }
+}
+
