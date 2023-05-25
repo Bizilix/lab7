@@ -293,6 +293,14 @@ private fun ContentTextField(
     )
 }
 
+@Preview
+@Composable
+fun ContentTextFieldPreview(){
+    ContentTextField(label = "Title",
+        text =" ",
+        onTextChange = {})
+}
+
 
 
 
