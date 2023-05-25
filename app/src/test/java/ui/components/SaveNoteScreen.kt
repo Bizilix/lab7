@@ -266,6 +266,14 @@ fun SaveNoteTopAppBarPreview() {
     )
 }
 
+@Preview
+@Composable
+fun SaveNoteContentPreview(){
+    SaveNoteContent(
+        note = NoteModel(title = "Title", content = "content"),
+        onNoteChange = {})
+}
+
 
 
 
