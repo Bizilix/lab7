@@ -191,3 +191,8 @@ selectedNotes ListNoteModel,
     }
 }
 
+private fun mapDialogTitle(dialog Int) String = when (dialog) {
+    RESTORE_NOTES_DIALOG - Restore notes
+            PERMANENTLY_DELETE_DIALOG - Delete notes forever
+    else - throw RuntimeException(Dialog not supported $dialog)
+}
