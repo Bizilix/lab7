@@ -108,3 +108,39 @@ fun TrashScreen(viewModel MainViewModel) {
 }
 
 @Composable
+private fun TrashTopAppBar(
+    onNavigationIconClick () - Unit,
+onRestoreNotesClick () - Unit,
+onDeleteNotesClick () - Unit,
+areActionsVisible Boolean
+) {
+    TopAppBar(
+        title = { Text(text = Trash, color = MaterialTheme.colors.onPrimary) },
+        navigationIcon = {
+            IconButton(onClick = onNavigationIconClick) {
+                Icon(
+                    imageVector = Icons.Filled.List,
+                    contentDescription = Drawer Button
+                )
+            }
+        },
+        actions = {
+            if (areActionsVisible) {
+                IconButton(onClick = onRestoreNotesClick) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_baseline_restore_from_trash_24),
+                        contentDescription = Restore Notes Button,
+                        tint = MaterialTheme.colors.onPrimary
+                    )
+                }
+                IconButton(onClick = onDeleteNotesClick) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_baseline_delete_forever_24),
+                        contentDescription = Delete Notes Button,
+                        tint = MaterialTheme.colors.onPrimary
+                    )
+                }
+            }
+        }
+    )
+}
