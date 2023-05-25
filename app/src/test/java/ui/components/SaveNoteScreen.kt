@@ -144,6 +144,57 @@ fun ColorPickerPreview(){
     ) ){}
 }
 
+@Composable
+private fun SaveNoteTopAppBar(
+    isEditingMode: Boolean,
+    onBackClick: () -> Unit,
+    onSaveNoteClick: () -> Unit,
+    onOpenColorPickerClick:()-> Unit,
+    onDeleteNoteClick: ()->Unit
+) {
+    TopAppBar(
+        title = {
+            Text(
+                text = "Save Note",
+                color = MaterialTheme.colors.onPrimary
+            )
+        },
+        navigationIcon = {
+            IconButton(onClick = onBackClick) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "Save Note Button",
+                    tint = MaterialTheme.colors.onPrimary
+                )
+            }
+        },
+        actions = {
+            IconButton(onClick = onSaveNoteClick) {
+                Icon(
+                    imageVector = Icons.Default.Check,
+                    tint = MaterialTheme.colors.onPrimary,
+                    contentDescription = "Save Note Button"
+                )
+            }
+            IconButton(onClick = onOpenColorPickerClick) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_baseline_color_lens_24),
+                    contentDescription = "Add Note Button"
+                )
+            }
+        }
+    )
+    if (isEditingMode){
+        IconButton(onClick = onDeleteNoteClick) {
+            Icon(
+                imageVector = Icons.Default.Delete,
+                contentDescription = "Delete Note Button",
+                tint = MaterialTheme.colors.onPrimary
+            )
+        }
+    }
+}
+
 
 
 
