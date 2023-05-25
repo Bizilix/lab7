@@ -195,6 +195,41 @@ private fun SaveNoteTopAppBar(
     }
 }
 
+@Composable
+private fun SaveNoteContent(
+    note:NoteModel,
+    onNoteChange: (NoteModel)->Unit
+){
+    Column(modifier = Modifier.fillMaxSize()) {
+        ContentTextField(label = "Title",
+            text =note.title,
+            onTextChange = { newTitle ->
+                onNoteChange.invoke(note.copy(title = newTitle))
+            }
+        )
+        ContentTextField(
+            modifier = Modifier
+                .heightIn(max = 240.dp)
+                .padding(top = 16.dp),
+            label = "Baby",
+            text = note.content,
+            onTextChange = { newContent ->
+                onNoteChange.invoke(note.copy(content = newContent))
+            }
+        )
+        val canBeCheckedOff: Boolean = note.isCheckedOff !=null
+        NotesCheckOption(isChecked = canBeCheckedOff,
+            onCheckedChange = { canBeCheckedOffNewValue ->
+                val isCheckedOff: Boolean? = if (canBeCheckedOffNewValue) false else null
+                onNoteChange.invoke(note.copy(isCheckedOff=isCheckedOff))
+            }
+        )
+
+
+        PickedColor(color = note.color)
+    }
+}
+
 
 
 
