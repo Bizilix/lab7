@@ -318,6 +318,13 @@ private fun PickedColor(color:ColorModel){
     }
 }
 
+@Preview
+@Composable
+fun PickedColorPreview(){
+    PickedColor(ColorModel.DEFAULT)
+
+}
+
 
 
 
