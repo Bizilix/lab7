@@ -101,5 +101,31 @@ private fun ColorPicker(
     }
 }
 
+@Composable
+fun ColorItem(
+    color: ColorModel,
+    onColorSelect: (ColorModel)->Unit
+){
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(
+                onClick = { onColorSelect(color) }
+            )
+    ){
+        NoteColor(modifier = Modifier
+            .padding(10.dp), color= Color.fromHex(color.hex), size = 80.dp,
+            border = 2.dp
+        )
+        Text(
+            text = color.name,
+            fontSize = 22.sp,
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .align(CenterVertically)
+        )
+    }
+}
+
 
 
